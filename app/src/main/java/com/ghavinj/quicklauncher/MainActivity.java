@@ -1,6 +1,8 @@
 package com.ghavinj.quicklauncher;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,7 +34,14 @@ public class MainActivity extends AppCompatActivity {
         googleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String google = "https://www.google.com";
+                Uri webaddress = Uri.parse(google);
 
+                Intent gotoGoogle = new Intent(Intent.ACTION_VIEW, webaddress);
+
+                if (gotoGoogle.resolveActivity(getPackageManager()) != null){
+                     startActivity(gotoGoogle);
+                }
             }
         });
     }
